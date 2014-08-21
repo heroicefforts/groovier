@@ -1,0 +1,4 @@
+moduleName=groovier-module
+moduleVersion=0.1
+extensionClasses=net.heroicefforts.groovy.GroovyExtensions
+staticExtensionClasses=net.heroicefforts.groovy.GroovyStaticExtensions

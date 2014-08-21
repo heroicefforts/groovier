@@ -1,0 +1,45 @@
+buildscript {
+	repositories {
+		jcenter()
+	}
+
+	dependencies {
+		classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+apply plugin: 'groovy'
+apply plugin: 'license'
+apply plugin: 'maven'
+
+dependencies {
+	compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.3.+'
+}
+
+license {
+	ext.year = Calendar.getInstance().get(Calendar.YEAR)
+	ext.name = vendor
+	ext.project = rootProject.name
+}
+
+jar {
+	manifest {
+		attributes(
+			'Manifest-Version'       : '1.0',
+            'Created-By'             : vendor,
+			'Build-Time'			 : Calendar.getInstance().format('yyyy-MM-dd HH:mm:ss'),
+            'Specification-Title'    : rootProject.name,
+            'Specification-Version'  : version,
+            'Specification-Vendor'   : vendor,
+            'Implementation-Title'   : rootProject.name,
+            'Implementation-Version' : version,
+            'Implementation-Vendor'  : vendor
+		)
+	}
+}
+
+defaultTasks 'licenseMain', 'licenseTest', 'assemble', 'groovydoc'
